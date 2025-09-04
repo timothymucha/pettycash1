@@ -126,6 +126,7 @@ def build_alias_map(vendors: list[str]) -> dict[str, str]:
         "cigarattes": "Benchmark Distributors Limited",
         "cigarrattes": "Benchmark Distributors Limited",
         "takataka": "Takataka",
+        "alyemda":"SIDR Distributors Limited",
         "taka taka": "Takataka",
         "Thermo": "Zabach Enterprises Limited",
         "zuri": "Zuri Central",
@@ -376,6 +377,7 @@ if uploaded:
         )
 else:
     st.info("Upload your petty cash file (CSV/XLSX) with columns like: Pay Type, Till No, Transaction Date, Detail, Transacted Amount, User Name.")
+
 
 
 
