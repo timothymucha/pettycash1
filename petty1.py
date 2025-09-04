@@ -249,8 +249,8 @@ def classify_and_rows(row, seq, threshold):
     if any(k in details_n for k in ["refund", "return"]):
         memo_refund = f"Refund/Return recorded by {user} on {date_str}"
         return [
-            ["TRNS", "JOURNAL", date_str, "Sales Revenue", user, -amt, memo_refund, docnum, clear],
-            ["SPL",  "JOURNAL", date_str, "Cash in Drawer", user,  amt, memo_refund, docnum, clear],
+            ["TRNS", "GENERAL JOURNAL", date_str, "Sales Revenue", user, -amt, memo_refund, docnum, clear],
+            ["SPL",  "GENERAL JOURNAL", date_str, "Cash in Drawer", user,  amt, memo_refund, docnum, clear],
         ]
 
     # 1) Cash Pickup => TRANSFER Cash in Drawer -> Diamond Trust Bank
@@ -392,6 +392,7 @@ if uploaded:
         )
 else:
     st.info("Upload your petty cash file (CSV/XLSX) with columns like: Pay Type, Till No, Transaction Date, Detail, Transacted Amount, User Name.")
+
 
 
 
