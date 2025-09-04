@@ -90,7 +90,7 @@ VENDORS = [
     "Thomas Mwachongo Mwangala", "Three Spears Limited", "TOP IT UP DISTRIBUTOR",
     "Towfiq Kenya Limited", "Traderoots Limited",
     "Under the Influence East Africa", "UvA Wines", "VEGAN WORLD LIMITED",
-    "Vyema Eggs", "Water Refil", "Wine and More Limited", "Wingu Box Ltd",
+    "Moha Eggs", "Water Refil", "Wine and More Limited", "Wingu Box Ltd",
     "Zabach Enterprises Limited", "Zen Mahitaji Ltd",
     "Zenko Kenya Limited", "Zuri Central"
 ]
@@ -138,6 +138,8 @@ def build_alias_map(vendors: list[str]) -> dict[str, str]:
         "fuel": "LEXO ENERGY KENYA LIMITED",
         "petrol penerator": "LEXO ENERGY KENYA LIMITED",
         "kenchic": "Kenchic Limited",
+        "tawakal": "Tawakal Store Company Ltd",
+        "egg": "Moha Eggs",
     }
     alias.update(manual)
     return alias
@@ -377,6 +379,7 @@ if uploaded:
         )
 else:
     st.info("Upload your petty cash file (CSV/XLSX) with columns like: Pay Type, Till No, Transaction Date, Detail, Transacted Amount, User Name.")
+
 
 
 
