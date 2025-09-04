@@ -283,8 +283,10 @@ def classify_and_rows(row, seq, threshold):
 
     # 4) Vendor purchase
     matched = match_supplier(details_raw, VENDORS, threshold=threshold)
-    vendor_name = matched if matched else (details_raw.title() if details_raw else "Vendor")
-
+    if matched:
+        vendor_name = matched
+    else:
+        vendor_name = "General supplier"
     return [
         ["TRNS", "CHECK", date_str, "Cash in Drawer", vendor_name, -amt, memo_petty, docnum, clear],
         ["SPL",  "CHECK", date_str, "Accounts Payable", vendor_name,  amt, memo_petty, docnum, clear],
@@ -389,6 +391,7 @@ if uploaded:
         )
 else:
     st.info("Upload your petty cash file (CSV/XLSX) with columns like: Pay Type, Till No, Transaction Date, Detail, Transacted Amount, User Name.")
+
 
 
 
