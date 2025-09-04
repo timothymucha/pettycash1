@@ -136,7 +136,8 @@ def build_alias_map(vendors: list[str]) -> dict[str, str]:
         "dtb": "Diamond Trust Bank",
         "coke":"SIDR Distributors Limited",
         "fuel": "LEXO ENERGY KENYA LIMITED",
-        "petrol penerator": "LEXO ENERGY KENYA LIMITED",
+        "petrol generator": "LEXO ENERGY KENYA LIMITED",
+        "oil": "LEXO ENERGY KENYA LIMITED",
         "kenchic": "Kenchic Limited",
         "tawakal": "Tawakal Store Company Ltd",
         "egg": "Moha Eggs",
@@ -379,6 +380,7 @@ if uploaded:
         )
 else:
     st.info("Upload your petty cash file (CSV/XLSX) with columns like: Pay Type, Till No, Transaction Date, Detail, Transacted Amount, User Name.")
+
 
 
 
