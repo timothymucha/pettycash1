@@ -2,6 +2,7 @@ import re
 import pandas as pd
 from io import StringIO
 import streamlit as st
+from fuzzywuzzy import fuzz, process
 
 st.set_page_config(page_title="Petty Cash → QuickBooks IIF", layout="wide")
 st.title("💵 Petty Cash → QuickBooks IIF")
@@ -73,13 +74,24 @@ VENDORS = [
     "Zenko Kenya Limited", "Zuri Central"
 ]
 
-def match_supplier(detail: str) -> str:
-    """Try to map detail text to a known supplier name."""
-    d_norm = norm(detail)
-    for sup in VENDORS:
+def match_supplier(detail: str, suppliers: list, threshold: int = 85) -> str | None:
+    """Match petty cash detail text to a known supplier by fuzzy match."""
+    if not detail:
+        return None
+    detail_norm = norm(detail)
+
+    # Exact word matches first
+    for sup in suppliers:
         sup_norm = norm(sup)
-        if any(word in d_norm for word in sup_norm.split()):
-            return sup
+        for word in sup_norm.split():
+            if word and word in detail_norm.split():
+                return sup  # strong match on word
+
+    # Fuzzy best match
+    best, score = process.extractOne(detail_norm, suppliers, scorer=fuzz.token_set_ratio)
+    if score >= threshold:
+        return best
+
     return None
 
 # ---------- Column Mapping ----------
@@ -227,3 +239,4 @@ if uploaded:
 
 else:
     st.info("Upload your petty cash file (CSV/XLSX) with columns like: Pay Type, Till No, Transaction Date, Detail, Transacted Amount, User Name.")
+
