@@ -1,3 +1,5 @@
-import re
-import pandas as pd
-import streamlit as st
+openpyxl
+streamlit
+pandas
+fuzzywuzzy[speedup]
+python-Levenshtein
