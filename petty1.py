@@ -246,8 +246,8 @@ def classify_and_rows(row, seq, threshold):
     # 2) Deliveries
     if "deliv" in details_n:
         return [
-            ["TRNS", "CHECK", date_str, "Cash in Drawer", Boda, -amt, memo_deliv, docnum, clear],
-            ["SPL",  "CHECK", date_str, "Customer Deliveries", Boda,  amt, memo_deliv, docnum, clear],
+            ["TRNS", "CHECK", date_str, "Cash in Drawer", "Boda", -amt, memo_deliv, docnum, clear],
+            ["SPL",  "CHECK", date_str, "Customer Deliveries", "Boda",  amt, memo_deliv, docnum, clear],
         ]
     # 3) Bank Charges - Mpesa
     if "transaction cost" in details_n:
@@ -373,6 +373,7 @@ if uploaded:
         )
 else:
     st.info("Upload your petty cash file (CSV/XLSX) with columns like: Pay Type, Till No, Transaction Date, Detail, Transacted Amount, User Name.")
+
 
 
 
