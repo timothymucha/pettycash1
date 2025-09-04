@@ -245,8 +245,16 @@ def classify_and_rows(row, seq, threshold):
             ["TRNS", "CHECK", date_str, "Cash in Drawer", user, -amt, memo_deliv, docnum, clear],
             ["SPL",  "CHECK", date_str, "Customer Deliveries", user,  amt, memo_deliv, docnum, clear],
         ]
+    # 3) Bank Charges - Mpesa
+    if "transaction cost" in details_n:
+        memo_bank = f"MPESA transaction cost on {date_str}"
+        return [
+            ["TRNS", "CHECK", date_str, "Cash in Drawer", "Safaricom", -amt, memo_bank, docnum, clear],
+            ["SPL",  "CHECK", date_str, "Bank Charges - Mpesa", "Safaricom",  amt, memo_bank, docnum, clear],
+        ]
 
-    # 3) Staff transport (fare/fair/transport/trasport)
+
+    # 4) Staff transport (fare/fair/transport/trasport)
     if any(k in details_n for k in ["fare", "fair", "transport", "trasport"]):
         return [
             ["TRNS", "CHECK", date_str, "Cash in Drawer", user, -amt, memo_trans, docnum, clear],
@@ -361,3 +369,4 @@ if uploaded:
         )
 else:
     st.info("Upload your petty cash file (CSV/XLSX) with columns like: Pay Type, Till No, Transaction Date, Detail, Transacted Amount, User Name.")
+
