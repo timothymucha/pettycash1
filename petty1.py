@@ -99,7 +99,7 @@ VENDORS = [
 STOPWORDS = {
     "ltd", "limited", "enterprises", "enterprise", "company", "kenya", "plc", "group",
     "east", "africa", "and", "the", "store", "stores", "trading", "distributor",
-    "distributors", "foods", "food", "products", "general", "suppliers", "supplier",
+    "distributors", "foods", "food", "payment", "baraka", "products", "general", "suppliers", "supplier",
     "ventures", "agencies", "agency", "industries", "wholesale", "bakers", "services",
     "two", "thousand", "k", "co", "lilmited", "ltd.", "limited.", "ltds"
 }
@@ -129,6 +129,7 @@ def build_alias_map(vendors: list[str]) -> dict[str, str]:
         "safaricom": "Safaricom",
         "kcb": "Kenya Commercial Bank",
         "dtb": "Diamond Trust Bank",
+        "coke":"SIDR Distributors Limited",
         "kenchic": "Kenchic Limited",
     }
     alias.update(manual)
@@ -369,4 +370,5 @@ if uploaded:
         )
 else:
     st.info("Upload your petty cash file (CSV/XLSX) with columns like: Pay Type, Till No, Transaction Date, Detail, Transacted Amount, User Name.")
+
 
