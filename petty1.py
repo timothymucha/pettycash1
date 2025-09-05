@@ -271,7 +271,7 @@ def classify_and_rows(row, seq, threshold):
         memo_bank = f"MPESA transaction cost on {date_str}"
         return [
             ["TRNS", "CHECK", date_str, "Cash in Drawer", "Mpesa", -amt, memo_bank, docnum, clear],
-            ["SPL",  "CHECK", date_str, "Bank Charges - Mpesa", "Mpesa",  amt, memo_bank, docnum, clear],
+            ["SPL",  "CHECK", date_str, "Bank Service Charges:Bank Charges - Mpesa", "Mpesa",  amt, memo_bank, docnum, clear],
         ]
 
 
@@ -392,6 +392,7 @@ if uploaded:
         )
 else:
     st.info("Upload your petty cash file (CSV/XLSX) with columns like: Pay Type, Till No, Transaction Date, Detail, Transacted Amount, User Name.")
+
 
 
 
